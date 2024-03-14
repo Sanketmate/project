@@ -37,36 +37,40 @@ int Player::getWicket() { return this->Wicket; }
 
 //member Functions;
 void Player::display() {
-    cout << "\n\n\n#------- All Store Data are as followed -------#";
-    cout << "\n\n Jersy No \t Name \t Runs \t Wickets \tNO of matches";
-    cout << "\n=======================================================";
-    cout << "\n\t" << this->JNo << " |\t" << this->Name << " \t |" << this->Run << " \t |" << this->Wicket << " \t|\t " << this->Matches << "|";
-    cout << "\n|=======================================================|";
+    
+    cout << "\n\t" << this->JNo << " \t|\t" << this->Name << " \t|\t" << this->Run << " \t|\t" << this->Wicket << " \t|\t " << this->Matches << "|";
 }
 
 
 //Non Member Function;
 void storeData1(Player* p, int size) {
     bool exitLoop = false;
+    int j,r,w,m;
+    string n;
 
     for (int i = 0; i < size && !exitLoop; i++) {
         if (ctr != size) {
             cout << "\n\n\n\t\t!!! Please Enter your Data !!!";
             cout << "\n\t\t  ==========================";
             cout << "\n\nEnter your Jersey No (enter -1 to exit): ";
-            cin >> p[ctr].JNo;
+            cin >> j;
+            p[ctr].setJNo(j);
 
-            if (p[ctr].JNo == -1) {
+            if (p[ctr].getJNo() == -1) {
                 exitLoop = true;
             } else {
                 cout << "\nEnter your Name: ";
-                cin >> p[ctr].Name;
+                cin >>n;
+                p[ctr].setName(n);
                 cout << "\nEnter your Runs: ";
-                cin >> p[ctr].Run;
+                cin >> r;
+                p[ctr].setRun(r);
                 cout << "\nEnter your Wickets: ";
-                cin >> p[ctr].Wicket;
+                cin >> w;
+                p[ctr].setWicket(w);
                 cout << "\nEnter your No of Matches: ";
-                cin >> p[ctr].Matches;
+                cin >> m;
+                p[ctr].setMatches(m);
                 ctr++;
             }
         } else {
@@ -101,7 +105,7 @@ void storeData1(Player* p, int size) {
 
 int searchByNo(Player* p, int No) {
     for (int i = 0; i < ctr; i++) {
-        if (p[i].JNo == No) {
+        if (p[i].getJNo() == No) {
             return i;
         }
     }
@@ -110,7 +114,7 @@ int searchByNo(Player* p, int No) {
 
 int searchByName(Player* p, string name) {
     for (int i = 0; i < ctr; i++) {
-        if (p[i].Name == name) {
+        if (p[i].getName() == name) {
             return i;
         }
     }
@@ -118,6 +122,7 @@ int searchByName(Player* p, string name) {
 }
 
 int update(Player* p, int No) {
+    int m,r,w;
     int i = searchByNo(p, No);
     if (i == -1) {
         cout << "\nRecord not found";
@@ -134,15 +139,18 @@ int update(Player* p, int No) {
         switch (ch) {
         case 1:
             cout << "\nEnter your updated matches:";
-            cin >> p[i].Matches;
+            cin >> m;
+            p[i].setMatches(m);
             break;
         case 2:
             cout << "\nEnter your updated Runs:";
-            cin >> p[i].Run;
+            cin >> r;
+            p[i].setRun(r);
             break;
         case 3:
             cout << "\nEnter your updated Wickets:";
-            cin >> p[i].Wicket;
+            cin >> w;
+            p[i].setWicket(w);
             break;
         default:
             cout << "\nYour Data is Updated Sucessfull !!!";
@@ -171,10 +179,10 @@ void swapPlayers(Player* a, Player* b) {
     *b = temp;
 }
 
-voidsortByRuns(Player* p, int size) {
+void sortByRuns(Player* p, int size) {
     for (int i = 0; i < size - 1; i++) {
         for (int j = 0; j < size - i - 1; j++) {
-            if (p[j].Run < p[j + 1].Run) {
+            if (p[j].getRun() < p[j + 1].getRun()) {
                 swapPlayers(&p[j], &p[j + 1]);
             }
         }
@@ -191,7 +199,7 @@ void displayTopRuns(Player* p, int size) {
     int displayCount = (size < 3) ? size : 3;
 
     for (int i = 0; i < displayCount; i++) {
-        cout << "\n\t" << p[i].JNo << " |\t" << p[i].Name << " \t |" << p[i].Run << " \t |" << p[i].Wicket << " \t|\t " << p[i].Matches << "|";
+        cout << "\n\t" << p[i].getJNo() << " |\t" << p[i].getName() << " \t |" << p[i].getRun() << " \t |" << p[i].getWicket() << " \t|\t " << p[i].getMatches() << "|";
     }
 
     cout << "\n|=======================================================|";
@@ -200,7 +208,7 @@ void displayTopRuns(Player* p, int size) {
 void sortByWickets(Player* p, int size) {
     for (int i = 0; i < size - 1; i++) {
         for (int j = 0; j < size - i - 1; j++) {
-            if (p[j].Wicket < p[j + 1].Wicket) {
+            if (p[j].getWicket() < p[j + 1].getWicket()) {
                 swapPlayers(&p[j], &p[j + 1]);
             }
         }
@@ -217,7 +225,7 @@ void displayTopWickets(Player* p, int size) {
     int displayCount = (size < 3) ? size : 3;
 
     for (int i = 0; i < displayCount; i++) {
-        cout << "\n\t" << p[i].JNo << " |\t" << p[i].Name << " \t |" << p[i].Run << " \t |" << p[i].Wicket << " \t|\t " << p[i].Matches << "|";
+        cout << "\n\t" << p[i].getJNo() << " |\t" << p[i].getName() << " \t |" << p[i].getRun() << " \t |" << p[i].getWicket() << " \t|\t " << p[i].getMatches() << "|";
     }
 
     cout << "\n\t|=======================================================|";
@@ -226,7 +234,7 @@ void displayTopWickets(Player* p, int size) {
 void sortByMatches(Player* p, int size) {
     for (int i = 0; i < size - 1; i++) {
         for (int j = 0; j < size - i - 1; j++) {
-            if (p[j].Matches < p[j + 1].Matches) {
+            if (p[j].getMatches() < p[j + 1].getMatches()) {
                 swapPlayers(&p[j], &p[j + 1]);
             }
         }
@@ -243,7 +251,7 @@ void displayTopMatches(Player* p, int size) {
     int displayCount = (size < 3) ? size : 3;
 
     for (int i = 0; i < displayCount; i++) {
-        cout << "\n\t" << p[i].JNo << " |\t" << p[i].Name << " \t |" << p[i].Run << " \t |" << p[i].Wicket << " \t|\t " << p[i].Matches << "|";
+        cout << "\n\t" << p[i].getJNo() << " |\t" << p[i].getName() << " \t |" << p[i].getRun() << " \t |" << p[i].getWicket() << " \t|\t " << p[i].getMatches() << "|";
     }
 
     cout << "\n\t|=======================================================|";
@@ -279,3 +287,5 @@ void topData(Player* p, int size) {
         }
     } while (cho != 4);
 }
+
+

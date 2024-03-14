@@ -35,8 +35,7 @@ public:
 
 
 void storeData1(Player* p, int size);
-    // void display1(Player* p, int size);
-    // void display(Player p);
+    
     int searchByNo(Player* p, int No);
     int searchByName(Player* p, string name);
     int update(Player* p, int No);

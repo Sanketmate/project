@@ -39,30 +39,44 @@ int main() {
 
         switch (Choice) {
         case 1: storeData1(p, size); break;
-        case 2: for (int i = 0; i < size; i++)
-        {
-            p[i].display();
-        }
+        case 2: 
+            cout << "\n\n\n#------- All Store Data are as followed -------#";
+            cout << "\n\n Jersy No \t Name \t Runs \t Wickets \tNO of matches";
+            cout << "\n=======================================================";
+            for (int i = 0; i < size; i++)
+            {
+                p[i].display();
+            }
+            cout << "\n|=======================================================|";
         break;
         case 3:
             cout << "\nEnter Jersey No to be search: ";
             cin >> No;
+             cout << "\n\n\n#------- All Store Data are as followed -------#";
+            cout << "\n\n Jersy No \t Name \t Runs \t Wickets \tNO of matches";
+            cout << "\n=======================================================";
             indexx = searchByNo(p, No);
             if (indexx == -1) {
                 cout << "\nRecord not found";
             } else {
                 p[indexx].display();
             }
+            cout << "\n|=======================================================|";
             break;
         case 4:
             cout << "\nEnter Name to be search: ";
             cin >> Na;
+            cout << "\n\n\n#------- All Store Data are as followed -------#";
+            cout << "\n\n Jersy No \t Name \t Runs \t Wickets \tNO of matches";
+            cout << "\n=======================================================";
             indexx = searchByName(p, Na);
             if (indexx == -1) {
                 cout << "\nRecord not found";
             } else {
-                display(p[indexx]);
+                p[indexx].display();
             }
+            cout << "\n|=======================================================|";
+
             break;
         case 5:
             cout << "\nEnter Jersey No to be updated: ";
@@ -71,12 +85,17 @@ int main() {
             if (indexx == -1) {
                 cout << "\nRecord not found";
             } else {
-                p->display(p[indexx]);
+                 cout << "\n\n\n#------- All Store Data are as followed -------#";
+            cout << "\n\n Jersy No \t Name \t Runs \t Wickets \tNO of matches";
+            cout << "\n=======================================================";
+                p[indexx].display();
+                cout << "\n|=======================================================|";
             }
             break;
         case 6:
             cout << "Enter Jersey No to be delete: ";
             cin >> No;
+            
             deletee(p, No);
             break;
         case 7: topData(p, size); break;
